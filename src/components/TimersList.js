@@ -29,7 +29,7 @@ class TimersList extends Component {
 						{/*<Timer timer={timer} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />*/}
 						{ timer.edit ? 
 
-							<TimerEdit timer={timer} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
+							<TimerEdit timer={timer} index={index} title={timer.title} project={timer.project} status={timer.status} edit={timer.edit} />
 						 	: 
 						 	<Timer timer={timer} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
 						}

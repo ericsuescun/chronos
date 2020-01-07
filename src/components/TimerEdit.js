@@ -9,7 +9,6 @@ class TimerEdit extends Component {
 			index: props.index,
 			title: props.title,
 			project: props.project,
-			value: props.value,
 			status: props.status,
 			edit: props.edit
 		}
