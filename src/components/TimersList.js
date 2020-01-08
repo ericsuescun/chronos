@@ -15,7 +15,7 @@ class TimersList extends Component {
 			<div>
 				{store.getState().timers.map((timer, index) => 
 
-					<Timer key={'id' + index} timer={timer} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
+					<Timer key={'id' + index} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
 
 					
 				)}

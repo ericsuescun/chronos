@@ -11,7 +11,6 @@ class Timer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			timer: props.timer,
 			index: props.index,
 			title: props.title,
 			project: props.project,
@@ -38,12 +37,12 @@ class Timer extends Component {
 	handleStartStop(index, e) {
 		e.preventDefault();
 		console.log('start! - stop! ');
-		console.log('index=' + index + ' title: ' + this.state.title + ' value: ' + this.state.value );
+		console.log('Component index=' + index + ' title: ' + this.state.title + ' value: ' + this.state.value );
 		this.setState({ status: !this.state.status });
 		if(!this.state.status) {
 			this.myInterval = setInterval(() => {
 				this.setState({ value: this.state.value + 50 });
-				store.dispatch({ type: "REFRESH", index: index, value: this.state.value });
+				store.dispatch({ type: "REFRESH", index: index, value: this.state.value, title: this.state.title, project: this.state.project, status: this.state.status, edit: this.state.edit });
 			}, 50);	
 		} else {
 			clearInterval(this.myInterval);
@@ -85,7 +84,7 @@ class Timer extends Component {
 	
 	render() {
 		return(
-			<div key={'id' + this.state.index}>
+			<div>
 				{
 					!this.state.edit ? 
 

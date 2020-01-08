@@ -55,20 +55,11 @@ const chrono = (state, action) => {
 			return { edit: false, timers: timers };
 
 		case 'STARTSTOP':
-			// let timers5 = [];
-			// state.timers.map((timer, index) => {
-			// 	if(action.index === index) {
-			// 		timers5.push({...timer, status: !timer.status });
-			// 	} else {
-			// 		timers5.push(timer);
-			// 	}
-			// });
-			// return { edit: false, timers: timers5 };
-
 			let timers5 = [];
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
 					timers5.push({...timer, status: !timer.status, value: action.value });
+					console.log('store: ' + timer.title + ' value: ' + action.value);
 				} else {
 					timers5.push(timer);
 				}
@@ -79,7 +70,7 @@ const chrono = (state, action) => {
 			let timers6 = [];
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
-					timers6.push({...timer, value: action.value });
+					timers6.push({ value: action.value, title: action.title, project: action.project, status: action.status, edit: action.edit });
 				} else {
 					timers6.push(timer);
 				}
