@@ -10,23 +10,12 @@ import Timer from './Timer';
 library.add(faTrashAlt, faEdit);
 
 class TimersList extends Component {
-
-	handleErase(index, e) {
-		e.preventDefault();
-		store.dispatch({ type: "ERASE", index: index });
-	}
-
-	handleEdit(index, e) {
-		e.preventDefault();
-		store.dispatch({ type: "EDIT", index: index });
-	}
-
 	render() {
 		return(
 			<div>
 				{store.getState().timers.map((timer, index) => 
 
-						<Timer key={'id' + index} timer={timer} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
+					<Timer key={'id' + index} timer={timer} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
 
 					
 				)}

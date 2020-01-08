@@ -55,19 +55,40 @@ const chrono = (state, action) => {
 			return { edit: false, timers: timers };
 
 		case 'STARTSTOP':
+			// let timers5 = [];
+			// state.timers.map((timer, index) => {
+			// 	if(action.index === index) {
+			// 		timers5.push({...timer, status: !timer.status });
+			// 	} else {
+			// 		timers5.push(timer);
+			// 	}
+			// });
+			// return { edit: false, timers: timers5 };
+
 			let timers5 = [];
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
-					timers5.push({...timer, status: !timer.status });
+					timers5.push({...timer, status: !timer.status, value: action.value });
 				} else {
 					timers5.push(timer);
 				}
 			});
 			return { edit: false, timers: timers5 };
 
+		case 'REFRESH':
+			let timers6 = [];
+			state.timers.map((timer, index) => {
+				if(action.index === index) {
+					timers6.push({...timer, value: action.value });
+				} else {
+					timers6.push(timer);
+				}
+			});
+			return { edit: false, timers: timers6 };
+
 		default:
 			return state;
 	}
 }
 
-export default createStore(chrono, { edit: false, timers: [{ title: 'Test', project: 'chirstmas', value: 0, status: false, edit: false }]} );
+export default createStore(chrono, { edit: false, timers: [{ title: 'Test', project: 'christmas', value: 70000, status: false, edit: false }, { title: 'Eric', project: 'Suescun', value: 45000, status: false, edit: false }, { title: 'Ruth', project: 'Arango', value: 30000, status: false, edit: false }]} );

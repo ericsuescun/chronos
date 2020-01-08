@@ -23,7 +23,7 @@ class Timer extends Component {
 
 	handleErase(index, e) {
 		e.preventDefault();
-		this.setState({ status: false });
+		// this.setState({ status: false });
 		// clearInterval(this.myInterval);
 		console.log("Delete: " + index);
 		store.dispatch({ type: "ERASE", index: index });
@@ -42,12 +42,14 @@ class Timer extends Component {
 		this.setState({ status: !this.state.status });
 		if(!this.state.status) {
 			this.myInterval = setInterval(() => {
-				this.setState({ value: this.state.value + 50 })
+				this.setState({ value: this.state.value + 50 });
+				store.dispatch({ type: "REFRESH", index: index, value: this.state.value });
 			}, 50);	
 		} else {
 			clearInterval(this.myInterval);
 		}
 		
+		// store.dispatch({ type: "STARTSTOP", index: index, value: this.state.value });
 		store.dispatch({ type: "STARTSTOP", index: index, value: this.state.value });
 	}
 
