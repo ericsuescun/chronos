@@ -22,9 +22,6 @@ class Timer extends Component {
 
 	handleErase(index, e) {
 		e.preventDefault();
-		// this.setState({ status: false });
-		// clearInterval(this.myInterval);
-		console.log("Delete: " + index);
 		store.dispatch({ type: "ERASE", index: index });
 	}
 
@@ -36,14 +33,12 @@ class Timer extends Component {
 
 	handleStartStop(index, e) {
 		e.preventDefault();
-		console.log('start! - stop! ');
-		console.log('Component index=' + index + ' title: ' + this.state.title + ' value: ' + this.state.value );
 		this.setState({ status: !this.state.status });
 		if(!this.state.status) {
 			this.myInterval = setInterval(() => {
-				this.setState({ value: this.state.value + 50 });
-				store.dispatch({ type: "REFRESH", index: index, value: this.state.value, title: this.state.title, project: this.state.project, status: this.state.status, edit: this.state.edit });
-			}, 50);	
+				this.setState({ value: this.state.value + 1 });
+				store.dispatch({ type: "REFRESH", index: index, value: this.state.value });
+			}, 1000);	
 		} else {
 			clearInterval(this.myInterval);
 		}
@@ -62,7 +57,6 @@ class Timer extends Component {
 		e.preventDefault();
 		this.setState({ edit: false });
 		store.dispatch({ type: "SAVE", title: this.state.title, project: this.state.project, index: index });
-		console.log('SAVE');
 	}
 
 
@@ -80,6 +74,15 @@ class Timer extends Component {
 
 	componentWillUnmount() {
 		clearInterval(this.myInterval);
+	}
+
+	componentDidMount() {
+		if(this.state.status) {
+			this.myInterval = setInterval(() => {
+				this.setState({ value: this.state.value + 1 });
+				store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
+			}, 1000);
+		}
 	}
 	
 	render() {
@@ -113,10 +116,24 @@ class Timer extends Component {
 	}
 }
 
+// function secondsToHuman(s) {
+// 	const seconds = Math.floor((s / 1000) % 60);
+// 	const minutes = Math.floor(((s / 1000) / 60) % 60);
+// 	const hours = Math.floor((s / 1000) / 60 / 60);
+
+// 	const humanized = [
+// 		pad(hours.toString(), 2),
+// 		pad(minutes.toString(), 2),
+// 		pad(seconds.toString(), 2),
+// 	].join(':');
+
+// 	return humanized;
+// }
+
 function secondsToHuman(s) {
-	const seconds = Math.floor((s / 1000) % 60);
-	const minutes = Math.floor(((s / 1000) / 60) % 60);
-	const hours = Math.floor((s / 1000) / 60 / 60);
+	const seconds = Math.floor((s) % 60);
+	const minutes = Math.floor(((s) / 60) % 60);
+	const hours = Math.floor((s) / 60 / 60);
 
 	const humanized = [
 		pad(hours.toString(), 2),
