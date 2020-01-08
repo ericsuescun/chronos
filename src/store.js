@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
 
 const chrono = (state, action) => {
-	let timersAll = [];
 	switch(action.type) {
 		case 'ADD':
 			return {...state, edit: true};
@@ -46,11 +45,13 @@ const chrono = (state, action) => {
 
 		case 'ERASE':
 			let timers = [];
+			console.log(state.timers);
 			state.timers.map((timer, index) => {
 				if(action.index !== index) {
 					timers.push(timer);
 				}
 			});
+			console.log(timers);
 			return { edit: false, timers: timers };
 
 		case 'STARTSTOP':

@@ -5,7 +5,6 @@ import TimersList from './components/TimersList';
 import ControlBar from './components/ControlBar';
 import { Container, Row, Col } from 'react-bootstrap';
 import store from './store';
-import Timer from './components/Timer.js';
 
 class App extends Component {
 
