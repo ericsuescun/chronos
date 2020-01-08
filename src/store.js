@@ -75,7 +75,7 @@ const chrono = (state, action) => {
 					timers6.push(timer);
 				}
 			});
-			return { edit: false, timers: timers6 };
+			return { edit: state.edit, timers: timers6 };
 
 		default:
 			return state;
