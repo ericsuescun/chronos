@@ -18,7 +18,8 @@ class Timer extends Component {
 
 	handleErase(e) {
 		e.preventDefault();
-		// clearInterval(this.myInterval);
+		clearInterval(this.myInterval);
+		console.log('Elimino/erase: ' + this.myInterval);
 		store.dispatch({ type: "ERASE", index: this.state.index });
 	}
 
@@ -63,6 +64,7 @@ class Timer extends Component {
 			}, 1000);
 			console.log('Interval ID: ' + this.myInterval);
 		} else {
+			console.log('stopped: ' + this.myInterval);
 			clearInterval(this.myInterval);
 		}
 		
@@ -73,6 +75,7 @@ class Timer extends Component {
 	componentWillUnmount() {
 		console.log('component UNmount');
 		console.log(this.state.index);
+		console.log('Interval unmounted: ' + this.myInterval);
 		clearInterval(this.myInterval);
 	}
 
@@ -95,7 +98,8 @@ class Timer extends Component {
 					!this.state.edit ? 
 
 					<div>
-						<h5>Timer: {this.state.index}</h5>
+						<h5>Vector: {this.state.index}</h5>
+						<h5>This.myInterval: {this.myInterval}</h5>
 						<h5>{store.getState().timers[this.state.index].title}</h5>
 						<p>{store.getState().timers[this.state.index].index}</p>
 						<p>{store.getState().timers[this.state.index].project}</p>
@@ -108,9 +112,9 @@ class Timer extends Component {
 					:
 					<div>
 						<label>Título</label>
-						<input type="text" value={store.getState().timers[this.state.index].title} onChange={this.handleChangeTitle.bind(this)} />
+						<input type="text" value={this.state.title} onChange={this.handleChangeTitle.bind(this)} />
 						<label>Proyecto</label>
-						<input type="text" value={store.getState().timers[this.state.index].project} onChange={this.handleChangeProject.bind(this)} />
+						<input type="text" value={this.state.project} onChange={this.handleChangeProject.bind(this)} />
 						<Button variant={"outline-primary"} onClick={this.handleSave.bind(this)} >Guardar</Button>
 						<Button variant={"outline-danger"} onClick={this.handleCancel.bind(this)} >Cancelar</Button>
 					</div>
