@@ -12,7 +12,7 @@ class App extends Component {
     super();
     this.state = {
       edit: false,
-      timers: [{ title: 'Test', project: 'chirstmas', value: 0, status: false }] 
+      timers: [{ title: 'Test', project: 'chirstmas', value: 0, status: false, edit: false }] 
     }
 
     store.subscribe(()  => {

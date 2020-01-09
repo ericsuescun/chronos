@@ -10,6 +10,7 @@ import Timer from './Timer';
 library.add(faTrashAlt, faEdit);
 
 class TimersList extends Component {
+
 	render() {
 		return(
 			<div>

@@ -12,51 +12,32 @@ class Timer extends Component {
 		super(props);
 		this.state = {
 			index: props.index,
-			title: props.title,
-			project: props.project,
-			value: props.value,
-			status: props.status,
-			edit: props.edit
+			value: props.value
 		}
 	}
 
-	handleErase(index, e) {
+	handleErase(e) {
 		e.preventDefault();
-		store.dispatch({ type: "ERASE", index: index });
+		// clearInterval(this.myInterval);
+		store.dispatch({ type: "ERASE", index: this.state.index });
 	}
 
-	handleEdit(index, e) {
+	handleEdit(e) {
 		e.preventDefault();
 		this.setState({ edit: true });
-		store.dispatch({ type: "EDIT", index: index });
+		store.dispatch({ type: "EDIT", index: this.state.index });
 	}
 
-	handleStartStop(index, e) {
-		e.preventDefault();
-		this.setState({ status: !this.state.status });
-		if(!this.state.status) {
-			this.myInterval = setInterval(() => {
-				this.setState({ value: this.state.value + 1 });
-				store.dispatch({ type: "REFRESH", index: index, value: this.state.value });
-			}, 1000);	
-		} else {
-			clearInterval(this.myInterval);
-		}
-		
-		// store.dispatch({ type: "STARTSTOP", index: index, value: this.state.value });
-		store.dispatch({ type: "STARTSTOP", index: index, value: this.state.value });
-	}
-
-	handleCancel(index, e) {
+	handleCancel(e) {
 		e.preventDefault();
 		this.setState({ edit: false });
-		store.dispatch({ type: "CANCEL", index: index });
+		store.dispatch({ type: "CANCEL", index: this.state.index });
 	}
 
-	handleSave(index, e) {
+	handleSave(e) {
 		e.preventDefault();
 		this.setState({ edit: false });
-		store.dispatch({ type: "SAVE", title: this.state.title, project: this.state.project, index: index });
+		store.dispatch({ type: "SAVE", title: this.state.title, project: this.state.project, index: this.state.index });
 	}
 
 
@@ -72,14 +53,36 @@ class Timer extends Component {
 		})
 	}
 
+	handleStartStop(e) {
+		e.preventDefault();
+		console.log('start-stop');
+		if(!store.getState().timers[this.state.index].status) {
+			this.myInterval = setInterval(() => {
+				this.setState({ value: store.getState().timers[this.state.index].value + 1 });
+				store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
+			}, 1000);
+			console.log('Interval ID: ' + this.myInterval);
+		} else {
+			clearInterval(this.myInterval);
+		}
+		
+		store.dispatch({ type: "STARTSTOP", index: this.state.index, value: this.state.value });
+		// store.dispatch({ type: "STARTSTOP", index: this.state.index, value: store.getState().timers[this.state.index].value });
+	}
+
 	componentWillUnmount() {
+		console.log('component UNmount');
+		console.log(this.state.index);
 		clearInterval(this.myInterval);
 	}
 
 	componentDidMount() {
-		if(this.state.status) {
+		console.log('component mount');
+		console.log(this.state.index);
+		console.log(store.getState().timers[this.state.index].status);
+		if(store.getState().timers[this.state.index].status) {
 			this.myInterval = setInterval(() => {
-				this.setState({ value: this.state.value + 1 });
+				this.setState({ value: store.getState().timers[this.state.index].value + 1 });
 				store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
 			}, 1000);
 		}
@@ -87,28 +90,29 @@ class Timer extends Component {
 	
 	render() {
 		return(
-			<div>
+			<div key={this.state.index} >
 				{
 					!this.state.edit ? 
 
 					<div>
-						<h5>{this.state.title}</h5>
-						<p>{this.state.index}</p>
-						<p>{this.state.project}</p>
-						<h1>{secondsToHuman(this.state.value)}</h1>
-						<FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this, this.state.index) } />
-						<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this, this.state.index)} />
-						<Button variant={ this.state.status ? 'danger' : 'success' } onClick={this.handleStartStop.bind(this, this.state.index)} >{this.state.status ? 'Stop' : 'Start' }</Button>
-						<p>{this.state.status ? 'running' : 'stopped' }</p>
+						<h5>Timer: {this.state.index}</h5>
+						<h5>{store.getState().timers[this.state.index].title}</h5>
+						<p>{store.getState().timers[this.state.index].index}</p>
+						<p>{store.getState().timers[this.state.index].project}</p>
+						<h1>{secondsToHuman(store.getState().timers[this.state.index].value)}</h1>
+						<FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
+						<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
+						<Button variant={ store.getState().timers[this.state.index].status ? 'danger' : 'success' } onClick={this.handleStartStop.bind(this)} >{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
+						<p>{store.getState().timers[this.state.index].status ? 'running' : 'stopped' }</p>
 					</div>
 					:
 					<div>
 						<label>Título</label>
-						<input type="text" value={this.state.title} onChange={this.handleChangeTitle.bind(this)} />
+						<input type="text" value={store.getState().timers[this.state.index].title} onChange={this.handleChangeTitle.bind(this)} />
 						<label>Proyecto</label>
-						<input type="text" value={this.state.project} onChange={this.handleChangeProject.bind(this)} />
-						<Button variant={"outline-primary"} onClick={this.handleSave.bind(this, this.state.index)} >Guardar</Button>
-						<Button variant={"outline-danger"} onClick={this.handleCancel.bind(this, this.state.index)} >Cancelar</Button>
+						<input type="text" value={store.getState().timers[this.state.index].project} onChange={this.handleChangeProject.bind(this)} />
+						<Button variant={"outline-primary"} onClick={this.handleSave.bind(this)} >Guardar</Button>
+						<Button variant={"outline-danger"} onClick={this.handleCancel.bind(this)} >Cancelar</Button>
 					</div>
 				}
 			</div>

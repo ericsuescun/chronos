@@ -44,21 +44,21 @@ const chrono = (state, action) => {
 			return { edit: false, timers: timers2 };
 
 		case 'ERASE':
-			let timers = [];
+			let timers7 = [];
 			console.log(state.timers);
 			state.timers.map((timer, index) => {
 				if(action.index !== index) {
-					timers.push(timer);
+					timers7.push(timer);
 				}
 			});
-			console.log(timers);
-			return { edit: false, timers: timers };
+			console.log(timers7);
+			return { edit: false, timers: timers7 };
 
 		case 'STARTSTOP':
 			let timers5 = [];
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
-					timers5.push({...timer, status: !timer.status, value: action.value });
+					timers5.push({...timer, status: !timer.status });
 					console.log('store: ' + timer.title + ' value: ' + action.value);
 				} else {
 					timers5.push(timer);
@@ -71,10 +71,10 @@ const chrono = (state, action) => {
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
 					timers6.push({ ...timer, value: action.value });
-					console.log('Titulo: ' + timer.title + ' value: ' + action.value);
+					// console.log('Refresh Titulo: ' + timer.title + ' value: ' + action.value);
 				} else {
 					timers6.push(timer);
-					console.log('Titulo: ' + timer.title + ' value: ' + timer.value);
+					// console.log('Refresh Titulo: ' + timer.title + ' value: ' + timer.value);
 				}
 			});
 			return { edit: state.edit, timers: timers6 };
@@ -86,4 +86,4 @@ const chrono = (state, action) => {
 
 // export default createStore(chrono, { edit: false, timers: [{ title: 'Test', project: 'christmas', value: 70000, status: false, edit: false }, { title: 'Eric', project: 'Suescun', value: 45000, status: false, edit: false }, { title: 'Ruth', project: 'Arango', value: 30000, status: false, edit: false }]} );
 
-export default createStore(chrono, { edit: false, timers: [{ title: 'Test', project: 'christmas', value: 90, status: false, edit: false }, { title: 'Eric', project: 'Suescun', value: 45, status: false, edit: false }, { title: 'Ruth', project: 'Arango', value: 15, status: true, edit: false }]} );
+export default createStore(chrono, { edit: false, timers: [{ title: 'Test', project: 'christmas', value: 90, status: true, edit: false }, { title: 'Eric', project: 'Suescun', value: 45, status: false, edit: false }, { title: 'Ruth', project: 'Arango', value: 15, status: false, edit: false }]} );
