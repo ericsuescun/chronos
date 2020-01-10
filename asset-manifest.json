@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/ericsuescun/chronos/static/css/main.06cfa6fa.chunk.css",
-    "main.js": "/ericsuescun/chronos/static/js/main.d67fa90b.chunk.js",
-    "main.js.map": "/ericsuescun/chronos/static/js/main.d67fa90b.chunk.js.map",
-    "runtime-main.js": "/ericsuescun/chronos/static/js/runtime-main.1a74250a.js",
-    "runtime-main.js.map": "/ericsuescun/chronos/static/js/runtime-main.1a74250a.js.map",
-    "static/css/2.17e5ed98.chunk.css": "/ericsuescun/chronos/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.3c218186.chunk.js": "/ericsuescun/chronos/static/js/2.3c218186.chunk.js",
-    "static/js/2.3c218186.chunk.js.map": "/ericsuescun/chronos/static/js/2.3c218186.chunk.js.map",
-    "index.html": "/ericsuescun/chronos/index.html",
-    "precache-manifest.43aa598199a2952d8a3a8e5bd6a76538.js": "/ericsuescun/chronos/precache-manifest.43aa598199a2952d8a3a8e5bd6a76538.js",
-    "service-worker.js": "/ericsuescun/chronos/service-worker.js",
-    "static/css/2.17e5ed98.chunk.css.map": "/ericsuescun/chronos/static/css/2.17e5ed98.chunk.css.map",
-    "static/css/main.06cfa6fa.chunk.css.map": "/ericsuescun/chronos/static/css/main.06cfa6fa.chunk.css.map",
-    "static/js/2.3c218186.chunk.js.LICENSE": "/ericsuescun/chronos/static/js/2.3c218186.chunk.js.LICENSE"
+    "main.css": "/chronos/static/css/main.06cfa6fa.chunk.css",
+    "main.js": "/chronos/static/js/main.25e9845f.chunk.js",
+    "main.js.map": "/chronos/static/js/main.25e9845f.chunk.js.map",
+    "runtime-main.js": "/chronos/static/js/runtime-main.104010fa.js",
+    "runtime-main.js.map": "/chronos/static/js/runtime-main.104010fa.js.map",
+    "static/css/2.17e5ed98.chunk.css": "/chronos/static/css/2.17e5ed98.chunk.css",
+    "static/js/2.3c218186.chunk.js": "/chronos/static/js/2.3c218186.chunk.js",
+    "static/js/2.3c218186.chunk.js.map": "/chronos/static/js/2.3c218186.chunk.js.map",
+    "index.html": "/chronos/index.html",
+    "precache-manifest.89092949dac4b6ab24c04832c297d694.js": "/chronos/precache-manifest.89092949dac4b6ab24c04832c297d694.js",
+    "service-worker.js": "/chronos/service-worker.js",
+    "static/css/2.17e5ed98.chunk.css.map": "/chronos/static/css/2.17e5ed98.chunk.css.map",
+    "static/css/main.06cfa6fa.chunk.css.map": "/chronos/static/css/main.06cfa6fa.chunk.css.map",
+    "static/js/2.3c218186.chunk.js.LICENSE": "/chronos/static/js/2.3c218186.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.1a74250a.js",
+    "static/js/runtime-main.104010fa.js",
     "static/css/2.17e5ed98.chunk.css",
     "static/js/2.3c218186.chunk.js",
     "static/css/main.06cfa6fa.chunk.css",
-    "static/js/main.d67fa90b.chunk.js"
+    "static/js/main.25e9845f.chunk.js"
   ]
 }
