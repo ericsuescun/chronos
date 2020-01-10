@@ -24,7 +24,7 @@ const chrono = (state, action) => {
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
 					// timers3.push({edit: false, timers: { title: action.title, project: action.project, value: 0, status: false, edit: false } });
-					timers3.push({ title: action.title, project: action.project, value: 0, status: false, edit: false});
+					timers3.push({ ...timer, title: action.title, project: action.project, edit: false});
 				} else {
 					timers3.push(timer);
 				}
