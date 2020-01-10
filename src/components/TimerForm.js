@@ -86,7 +86,7 @@ class TimerForm extends Component {
 					
 					<Button variant={"outline-danger"} size="sm" onClick={this.handleCancel.bind(this)} >Cancelar</Button>
 				</ButtonGroup>*/}
-				<Card style={{ width: '18rem' }}>
+				<Card className='mb-3' >
 				  <Card.Body>
 				    <Card.Text>
 

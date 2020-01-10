@@ -30,7 +30,7 @@ class App extends Component {
           <Row>
             <Col className='timerList' xs={{ span: 4, offset: 4}}>
               <TimersList />
-              <ControlBar />
+              {store.getState().newTimer ? <br /> : <ControlBar /> }
             </Col>
           </Row>
         </Container>

@@ -10,8 +10,8 @@ class ControlBar extends Component {
 
 	render() {
 		return(
-			<div>
-				<Button variant={"light"} onClick={this.handleAdd.bind(this) }>+</Button>
+			<div className="d-flex justify-content-center">
+				<Button variant={"light"} size="lg" onClick={this.handleAdd.bind(this) } >+</Button>
 			</div>
 		);
 	}

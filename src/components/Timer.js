@@ -75,7 +75,7 @@ class Timer extends Component {
 				<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
 				<Button variant={ store.getState().timers[this.state.index].status ? 'outline-danger' : 'outline-success' } onClick={this.handleStartStop.bind(this)} block>{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>*/}
 
-				<Card style={{ width: '18rem' }}>
+				<Card className='mb-3'>
 				  <Card.Body>
 				    <Card.Title><h5>{store.getState().timers[this.state.index].title}</h5></Card.Title>
 				    <Card.Subtitle className="mb-2 text-muted">{store.getState().timers[this.state.index].project}</Card.Subtitle>
