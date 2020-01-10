@@ -20,13 +20,13 @@ class Timer extends Component {
 	handleErase(e) {
 		e.preventDefault();
 		clearInterval(this.myInterval);
-		this.setState({ title: 'Título', project: 'Proyecto' });
+		// this.setState({ title: 'Título', project: 'Proyecto' });
 		store.dispatch({ type: "ERASE", index: this.state.index });
 	}
 
 	handleEdit(e) {
 		e.preventDefault();
-		this.setState({ edit: true });
+		this.setState({ edit: true, title: store.getState().timers[this.state.index].title, project: store.getState().timers[this.state.index].project });
 		store.dispatch({ type: "EDIT", index: this.state.index });
 	}
 
