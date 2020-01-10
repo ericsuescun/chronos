@@ -11,6 +11,12 @@ library.add(faTrashAlt, faEdit);
 
 class TimersList extends Component {
 
+	componentDidMount() {
+		this.myInterval = setInterval(() => {
+			store.dispatch({ type: 'SCAN' });
+		}, 1000);
+	}
+
 	render() {
 		return(
 			<div>

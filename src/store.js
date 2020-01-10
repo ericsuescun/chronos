@@ -49,6 +49,9 @@ const chrono = (state, action) => {
 			state.timers.map((timer, index) => {
 				if(action.index !== index) {
 					timers7.push(timer);
+					if(timer.status) {
+						clearInterval(timer.interval);	
+					}
 				}
 			});
 			console.log(timers7);
@@ -58,8 +61,7 @@ const chrono = (state, action) => {
 			let timers5 = [];
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
-					timers5.push({...timer, status: !timer.status, interval: action.interval });
-					console.log('store: ' + timer.title + ' value: ' + action.value);
+					timers5.push({...timer, status: !timer.status });
 				} else {
 					timers5.push(timer);
 				}
@@ -91,6 +93,15 @@ const chrono = (state, action) => {
 				}
 			});
 			return { edit: state.edit, timers: timers8 };
+
+		case 'SCAN':
+			return {
+					edit: state.edit, 
+
+					timers: state.timers.map((timer, index) => 
+								timer.status ? {...timer, value: timer.value + 1 } : timer 
+							)
+			};
 
 
 		default:

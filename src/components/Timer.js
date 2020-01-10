@@ -61,18 +61,20 @@ class Timer extends Component {
 	handleStartStop(e) {
 		e.preventDefault();
 		console.log('start-stop');
-		if(!store.getState().timers[this.state.index].status) {
-			this.myInterval = setInterval(() => {
-				this.setState({ value: store.getState().timers[this.state.index].value + 1 });
-				store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
-			}, 1000);
-			console.log('Interval ID: ' + this.myInterval);
-		} else {
-			console.log('stopped: ' + this.myInterval);
-			clearInterval(this.myInterval);
-		}
+		// if(!store.getState().timers[this.state.index].status) {
+		// 	this.myInterval = setInterval(() => {
+		// 		this.setState({ value: store.getState().timers[this.state.index].value + 1 });
+		// 		store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
+		// 	}, 1000);
+		// 	console.log('Interval ID: ' + this.myInterval);
+		// } else {
+		// 	console.log('stopped: ' + this.myInterval);
+		// 	clearInterval(this.myInterval);
+		// }
 		
-		store.dispatch({ type: "STARTSTOP", index: this.state.index, value: this.state.value, interval: this.myInterval });
+		store.dispatch({ type: "STARTSTOP", index: this.state.index });
+
+		// store.dispatch({ type: "STARTSTOP", index: this.state.index, value: this.state.value, interval: this.myInterval });
 		// store.dispatch({ type: "STARTSTOP", index: this.state.index, value: store.getState().timers[this.state.index].value });
 	}
 
@@ -81,18 +83,31 @@ class Timer extends Component {
 		console.log(this.state.index);
 		console.log('Interval unmounted: ' + this.myInterval);
 		clearInterval(this.myInterval);
+		// store.getState().timers.map((timer, index) => {
+		// 	if(timer.status) {
+		// 		this.myInterval = setInterval(() => {
+		// 			this.setState({ value: store.getState().timers[this.state.index].value + 1 });
+		// 			store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
+		// 		}, 1000);
+		// 		console.log('index: ' + index + ' interval: ' + this.myInterval);
+		// 	}
+		// });
 	}
 
-	componentDidMount() {
-		console.log('component mount');
-		console.log(this.state.index);
-		console.log(store.getState().timers[this.state.index].status);
+	startTimer() {
 		if(store.getState().timers[this.state.index].status) {
 			this.myInterval = setInterval(() => {
 				this.setState({ value: store.getState().timers[this.state.index].value + 1 });
 				store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
 			}, 1000);
 		}
+	}
+
+	componentDidMount() {
+		console.log('component mount');
+		console.log(this.state.index);
+		console.log(store.getState().timers[this.state.index].status);
+		this.startTimer();
 		store.dispatch({ type: "REFRESH2", index: this.state.index, value: this.state.value, interval: this.myInterval });
 	}
 	
