@@ -44,3 +44,11 @@
 .timerList {
   justify-content: center;
 }
+
+.timeNumber {
+  text-align: center;
+}
+
+.timerControls {
+  text-align: right;
+}

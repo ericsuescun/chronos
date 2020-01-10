@@ -78,12 +78,14 @@ class Timer extends Component {
 				<Card style={{ width: '18rem' }}>
 				  <Card.Body>
 				    <Card.Title><h5>{store.getState().timers[this.state.index].title}</h5></Card.Title>
-				    <Card.Subtitle className="mb-2 text-muted justify-content-md-center">{store.getState().timers[this.state.index].project}</Card.Subtitle>
+				    <Card.Subtitle className="mb-2 text-muted">{store.getState().timers[this.state.index].project}</Card.Subtitle>
 				    <Card.Text>
-				      <h3>{secondsToHuman(store.getState().timers[this.state.index].value)}</h3>
-				      <FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
-				      <span> </span>
-				      <FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
+				      <h3 className='timeNumber'>{secondsToHuman(store.getState().timers[this.state.index].value)}</h3>
+				      <div className='timerControls'>
+				      	<FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
+				      	<span> </span>
+				      	<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
+				      </div>
 				    </Card.Text>
 				    <Button variant={ store.getState().timers[this.state.index].status ? 'outline-danger' : 'outline-success' } onClick={this.handleStartStop.bind(this)} block>{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
 				  </Card.Body>
