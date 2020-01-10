@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
-// import TimerForm from './TimerForm';
 import store from '../store';
 import { Button } from 'react-bootstrap';
 
@@ -23,7 +20,6 @@ class Timer extends Component {
 	handleErase(e) {
 		e.preventDefault();
 		clearInterval(this.myInterval);
-		console.log('Elimino/erase: ' + this.myInterval);
 		store.dispatch({ type: "ERASE", index: this.state.index });
 	}
 
@@ -61,54 +57,9 @@ class Timer extends Component {
 	handleStartStop(e) {
 		e.preventDefault();
 		console.log('start-stop');
-		// if(!store.getState().timers[this.state.index].status) {
-		// 	this.myInterval = setInterval(() => {
-		// 		this.setState({ value: store.getState().timers[this.state.index].value + 1 });
-		// 		store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
-		// 	}, 1000);
-		// 	console.log('Interval ID: ' + this.myInterval);
-		// } else {
-		// 	console.log('stopped: ' + this.myInterval);
-		// 	clearInterval(this.myInterval);
-		// }
-		
+
 		store.dispatch({ type: "STARTSTOP", index: this.state.index });
 
-		// store.dispatch({ type: "STARTSTOP", index: this.state.index, value: this.state.value, interval: this.myInterval });
-		// store.dispatch({ type: "STARTSTOP", index: this.state.index, value: store.getState().timers[this.state.index].value });
-	}
-
-	componentWillUnmount() {
-		console.log('component UNmount');
-		console.log(this.state.index);
-		console.log('Interval unmounted: ' + this.myInterval);
-		clearInterval(this.myInterval);
-		// store.getState().timers.map((timer, index) => {
-		// 	if(timer.status) {
-		// 		this.myInterval = setInterval(() => {
-		// 			this.setState({ value: store.getState().timers[this.state.index].value + 1 });
-		// 			store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
-		// 		}, 1000);
-		// 		console.log('index: ' + index + ' interval: ' + this.myInterval);
-		// 	}
-		// });
-	}
-
-	startTimer() {
-		if(store.getState().timers[this.state.index].status) {
-			this.myInterval = setInterval(() => {
-				this.setState({ value: store.getState().timers[this.state.index].value + 1 });
-				store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
-			}, 1000);
-		}
-	}
-
-	componentDidMount() {
-		console.log('component mount');
-		console.log(this.state.index);
-		console.log(store.getState().timers[this.state.index].status);
-		this.startTimer();
-		store.dispatch({ type: "REFRESH2", index: this.state.index, value: this.state.value, interval: this.myInterval });
 	}
 	
 	render() {
@@ -118,17 +69,12 @@ class Timer extends Component {
 					!this.state.edit ? 
 
 					<div>
-						<h5>Vector: {this.state.index}</h5>
-						<h5>This.myInterval: {this.myInterval}</h5>
-						<h5>Store.Interval: {store.getState().timers[this.state.index].interval}</h5>
 						<h5>{store.getState().timers[this.state.index].title}</h5>
-						<p>{store.getState().timers[this.state.index].index}</p>
 						<p>{store.getState().timers[this.state.index].project}</p>
 						<h1>{secondsToHuman(store.getState().timers[this.state.index].value)}</h1>
 						<FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
 						<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
 						<Button variant={ store.getState().timers[this.state.index].status ? 'danger' : 'success' } onClick={this.handleStartStop.bind(this)} >{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
-						<p>{store.getState().timers[this.state.index].status ? 'running' : 'stopped' }</p>
 					</div>
 					:
 					<div>
