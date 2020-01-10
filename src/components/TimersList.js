@@ -14,7 +14,7 @@ class TimersList extends Component {
 	componentDidMount() {
 		this.myInterval = setInterval(() => {
 			store.dispatch({ type: 'SCAN' });
-		}, 1000);
+		}, 50);
 	}
 
 	render() {

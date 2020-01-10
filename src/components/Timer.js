@@ -68,40 +68,21 @@ class Timer extends Component {
 	render() {
 		return(
 			<div key={this.state.index} >
-
-					<div>
-						<h5>{store.getState().timers[this.state.index].title}</h5>
-						<p>{store.getState().timers[this.state.index].project}</p>
-						<h1>{secondsToHuman(store.getState().timers[this.state.index].value)}</h1>
-						<FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
-						<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
-						<Button variant={ store.getState().timers[this.state.index].status ? 'danger' : 'success' } onClick={this.handleStartStop.bind(this)} >{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
-					</div>
-
-				
+				<h5>{store.getState().timers[this.state.index].title}</h5>
+				<p>{store.getState().timers[this.state.index].project}</p>
+				<h1>{secondsToHuman(store.getState().timers[this.state.index].value)}</h1>
+				<FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
+				<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
+				<Button variant={ store.getState().timers[this.state.index].status ? 'danger' : 'success' } onClick={this.handleStartStop.bind(this)} >{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
 			</div>
 		);
 	}
 }
 
-// function secondsToHuman(s) {
-// 	const seconds = Math.floor((s / 1000) % 60);
-// 	const minutes = Math.floor(((s / 1000) / 60) % 60);
-// 	const hours = Math.floor((s / 1000) / 60 / 60);
-
-// 	const humanized = [
-// 		pad(hours.toString(), 2),
-// 		pad(minutes.toString(), 2),
-// 		pad(seconds.toString(), 2),
-// 	].join(':');
-
-// 	return humanized;
-// }
-
 function secondsToHuman(s) {
-	const seconds = Math.floor((s) % 60);
-	const minutes = Math.floor(((s) / 60) % 60);
-	const hours = Math.floor((s) / 60 / 60);
+	const seconds = Math.floor((s / 1000) % 60);
+	const minutes = Math.floor(((s / 1000) / 60) % 60);
+	const hours = Math.floor((s / 1000) / 60 / 60);
 
 	const humanized = [
 		pad(hours.toString(), 2),
@@ -111,6 +92,20 @@ function secondsToHuman(s) {
 
 	return humanized;
 }
+
+// function secondsToHuman(s) {
+// 	const seconds = Math.floor((s) % 60);
+// 	const minutes = Math.floor(((s) / 60) % 60);
+// 	const hours = Math.floor((s) / 60 / 60);
+
+// 	const humanized = [
+// 		pad(hours.toString(), 2),
+// 		pad(minutes.toString(), 2),
+// 		pad(seconds.toString(), 2),
+// 	].join(':');
+
+// 	return humanized;
+// }
 
 function pad(numberString, size) {
   let padded = numberString;

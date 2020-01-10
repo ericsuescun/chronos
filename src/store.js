@@ -96,7 +96,7 @@ const chrono = (state, action) => {
 					newTimer: state.newTimer, 
 
 					timers: state.timers.map((timer, index) => 
-								timer.status ? {...timer, value: timer.value + 1 } : timer 
+								timer.status ? {...timer, value: timer.value + 50 } : timer 
 							)
 			};
 
