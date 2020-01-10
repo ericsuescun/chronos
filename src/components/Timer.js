@@ -14,7 +14,9 @@ class Timer extends Component {
 			index: props.index,
 			value: props.value,
 			title: props.title,
-			project: props.project
+			project: props.project,
+			status: props.status,
+			interval: props.interval
 		}
 	}
 
@@ -70,7 +72,7 @@ class Timer extends Component {
 			clearInterval(this.myInterval);
 		}
 		
-		store.dispatch({ type: "STARTSTOP", index: this.state.index, value: this.state.value });
+		store.dispatch({ type: "STARTSTOP", index: this.state.index, value: this.state.value, interval: this.myInterval });
 		// store.dispatch({ type: "STARTSTOP", index: this.state.index, value: store.getState().timers[this.state.index].value });
 	}
 
@@ -91,6 +93,7 @@ class Timer extends Component {
 				store.dispatch({ type: "REFRESH", index: this.state.index, value: this.state.value });
 			}, 1000);
 		}
+		store.dispatch({ type: "REFRESH2", index: this.state.index, value: this.state.value, interval: this.myInterval });
 	}
 	
 	render() {
@@ -102,6 +105,7 @@ class Timer extends Component {
 					<div>
 						<h5>Vector: {this.state.index}</h5>
 						<h5>This.myInterval: {this.myInterval}</h5>
+						<h5>Store.Interval: {store.getState().timers[this.state.index].interval}</h5>
 						<h5>{store.getState().timers[this.state.index].title}</h5>
 						<p>{store.getState().timers[this.state.index].index}</p>
 						<p>{store.getState().timers[this.state.index].project}</p>

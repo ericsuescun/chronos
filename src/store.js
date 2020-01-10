@@ -58,7 +58,7 @@ const chrono = (state, action) => {
 			let timers5 = [];
 			state.timers.map((timer, index) => {
 				if(action.index === index) {
-					timers5.push({...timer, status: !timer.status });
+					timers5.push({...timer, status: !timer.status, interval: action.interval });
 					console.log('store: ' + timer.title + ' value: ' + action.value);
 				} else {
 					timers5.push(timer);
@@ -78,6 +78,20 @@ const chrono = (state, action) => {
 				}
 			});
 			return { edit: state.edit, timers: timers6 };
+
+		case 'REFRESH2':
+			let timers8 = [];
+			state.timers.map((timer, index) => {
+				if(action.index === index) {
+					timers8.push({ ...timer, value: action.value, interval: action.interval });
+					// console.log('Refresh Titulo: ' + timer.title + ' value: ' + action.value);
+				} else {
+					timers8.push(timer);
+					// console.log('Refresh Titulo: ' + timer.title + ' value: ' + timer.value);
+				}
+			});
+			return { edit: state.edit, timers: timers8 };
+
 
 		default:
 			return state;
