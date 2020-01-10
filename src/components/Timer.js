@@ -22,7 +22,6 @@ class Timer extends Component {
 	handleErase(e) {
 		e.preventDefault();
 		clearInterval(this.myInterval);
-		// this.setState({ title: 'Título', project: 'Proyecto' });
 		store.dispatch({ type: "ERASE", index: this.state.index });
 	}
 
@@ -109,20 +108,6 @@ function secondsToHuman(s) {
 
 	return humanized;
 }
-
-// function secondsToHuman(s) {
-// 	const seconds = Math.floor((s) % 60);
-// 	const minutes = Math.floor(((s) / 60) % 60);
-// 	const hours = Math.floor((s) / 60 / 60);
-
-// 	const humanized = [
-// 		pad(hours.toString(), 2),
-// 		pad(minutes.toString(), 2),
-// 		pad(seconds.toString(), 2),
-// 	].join(':');
-
-// 	return humanized;
-// }
 
 function pad(numberString, size) {
   let padded = numberString;

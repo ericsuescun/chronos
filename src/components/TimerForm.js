@@ -72,20 +72,6 @@ class TimerForm extends Component {
 	render() {
 		return(
 			<div>
-{/*				<label>Título</label>
-				<input type="text" value={this.state.title} onChange={this.handleChangeTitle.bind(this)} />
-				<label>Proyecto</label>
-				<input type="text" value={this.state.project} onChange={this.handleChangeProject.bind(this)} />
-				<ButtonGroup>
-					{
-						this.props.use === 'creation' ? 
-						<Button variant={"outline-primary"} size="sm" onClick={this.handleCreate.bind(this)} >Crear</Button>
-						:
-						<Button variant={"outline-primary"} size="sm" onClick={this.handleSave.bind(this)} >Guardar</Button>
-					}
-					
-					<Button variant={"outline-danger"} size="sm" onClick={this.handleCancel.bind(this)} >Cancelar</Button>
-				</ButtonGroup>*/}
 				<Card className='mb-3' >
 				  <Card.Body>
 				    <Card.Text>
