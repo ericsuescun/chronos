@@ -12,7 +12,9 @@ class Timer extends Component {
 		super(props);
 		this.state = {
 			index: props.index,
-			value: props.value
+			value: props.value,
+			title: props.title,
+			project: props.project
 		}
 	}
 
