@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import store from '../store';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button, ButtonGroup, Card } from 'react-bootstrap';
 import TimerForm from './TimerForm';
 
 class Timer extends Component {
@@ -68,12 +68,27 @@ class Timer extends Component {
 	render() {
 		return(
 			<div key={this.state.index} >
-				<h5>{store.getState().timers[this.state.index].title}</h5>
+{/*				<h5>{store.getState().timers[this.state.index].title}</h5>
 				<p>{store.getState().timers[this.state.index].project}</p>
-				<h1>{secondsToHuman(store.getState().timers[this.state.index].value)}</h1>
+				<h3>{secondsToHuman(store.getState().timers[this.state.index].value)}</h3>
 				<FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
 				<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
-				<Button variant={ store.getState().timers[this.state.index].status ? 'danger' : 'success' } onClick={this.handleStartStop.bind(this)} >{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
+				<Button variant={ store.getState().timers[this.state.index].status ? 'outline-danger' : 'outline-success' } onClick={this.handleStartStop.bind(this)} block>{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>*/}
+
+				<Card style={{ width: '18rem' }}>
+				  <Card.Body>
+				    <Card.Title><h5>{store.getState().timers[this.state.index].title}</h5></Card.Title>
+				    <Card.Subtitle className="mb-2 text-muted justify-content-md-center">{store.getState().timers[this.state.index].project}</Card.Subtitle>
+				    <Card.Text>
+				      <h3>{secondsToHuman(store.getState().timers[this.state.index].value)}</h3>
+				      <FontAwesomeIcon icon="trash-alt" onClick={this.handleErase.bind(this) } />
+				      <span> </span>
+				      <FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
+				    </Card.Text>
+				    <Button variant={ store.getState().timers[this.state.index].status ? 'outline-danger' : 'outline-success' } onClick={this.handleStartStop.bind(this)} block>{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
+				  </Card.Body>
+				</Card>
+
 			</div>
 		);
 	}

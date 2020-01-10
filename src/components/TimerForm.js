@@ -67,12 +67,12 @@ class TimerForm extends Component {
 				<ButtonGroup>
 					{
 						this.props.use === 'creation' ? 
-						<Button variant={"outline-primary"} onClick={this.handleCreate.bind(this)} >Crear</Button>
+						<Button variant={"outline-primary"} size="sm" onClick={this.handleCreate.bind(this)} >Crear</Button>
 						:
 						<Button variant={"outline-primary"} size="sm" onClick={this.handleSave.bind(this)} >Guardar</Button>
 					}
 					
-					<Button variant={"outline-danger"} onClick={this.handleCancel.bind(this)} >Cancelar</Button>
+					<Button variant={"outline-danger"} size="sm" onClick={this.handleCancel.bind(this)} >Cancelar</Button>
 				</ButtonGroup>
 			</div>
 		);
