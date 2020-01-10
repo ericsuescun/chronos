@@ -8,8 +8,8 @@ class TimerForm extends Component {
 
 		if(props.use === 'creation') {
 			this.state = {
-				title: "Título",
-				project: "Proyecto",
+				title: "",
+				project: "",
 				value: 0,
 				status: false,
 			}
@@ -35,7 +35,8 @@ class TimerForm extends Component {
 
 	handleCreate(e) {
 		e.preventDefault();
-		store.dispatch({ type: "CREATE", title: this.state.title, project: this.state.project });
+		
+		store.dispatch({ type: "CREATE", title: this.state.title === '' ? 'Timer' : this.state.title, project: this.state.project === '' ? 'Project' : this.state.project });
 	}
 
 	handleSave(e) {
