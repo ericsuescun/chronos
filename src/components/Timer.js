@@ -20,6 +20,7 @@ class Timer extends Component {
 	handleErase(e) {
 		e.preventDefault();
 		clearInterval(this.myInterval);
+		this.setState({ title: 'Título', project: 'Proyecto' });
 		store.dispatch({ type: "ERASE", index: this.state.index });
 	}
 

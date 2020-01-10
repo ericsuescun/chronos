@@ -29,7 +29,6 @@ const chrono = (state, action) => {
 					timers3.push(timer);
 				}
 			});
-			console.log({ edit: false, timers: timers3 });
 			return { edit: false, timers: timers3 };
 
 		case 'EDIT':
@@ -45,7 +44,6 @@ const chrono = (state, action) => {
 
 		case 'ERASE':
 			let timers7 = [];
-			console.log(state.timers);
 			state.timers.map((timer, index) => {
 				if(action.index !== index) {
 					timers7.push(timer);
@@ -54,7 +52,6 @@ const chrono = (state, action) => {
 					}
 				}
 			});
-			console.log(timers7);
 			return { edit: false, timers: timers7 };
 
 		case 'STARTSTOP':
