@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 const chrono = (state, action) => {
 	switch(action.type) {
 		case 'ADD':
-			return {...state, edit: true};
+			return {...state, newTimer: true};
 
 		case 'CANCEL':
 			let timers4 = [];
@@ -14,10 +14,10 @@ const chrono = (state, action) => {
 					timers4.push(timer);
 				}
 			});
-			return { edit: false, timers: timers4 };
+			return { newTimer: false, timers: timers4 };
 
 		case 'CREATE':
-			return { edit: false, timers: state.timers.concat({ title: action.title, project: action.project, value: 0, status: false, edit: false }) };
+			return { newTimer: false, timers: state.timers.concat({ title: action.title, project: action.project, value: 0, status: false, edit: false }) };
 
 		case 'SAVE':
 			let timers3 = [];
@@ -29,7 +29,7 @@ const chrono = (state, action) => {
 					timers3.push(timer);
 				}
 			});
-			return { edit: false, timers: timers3 };
+			return { newTimer: false, timers: timers3 };
 
 		case 'EDIT':
 			let timers2 = [];
@@ -40,7 +40,7 @@ const chrono = (state, action) => {
 					timers2.push(timer);
 				}
 			});
-			return { edit: false, timers: timers2 };
+			return { newTimer: false, timers: timers2 };
 
 		case 'ERASE':
 			let timers7 = [];
@@ -52,7 +52,7 @@ const chrono = (state, action) => {
 					}
 				}
 			});
-			return { edit: false, timers: timers7 };
+			return { newTimer: false, timers: timers7 };
 
 		case 'STARTSTOP':
 			let timers5 = [];
@@ -63,7 +63,7 @@ const chrono = (state, action) => {
 					timers5.push(timer);
 				}
 			});
-			return { edit: false, timers: timers5 };
+			return { newTimer: false, timers: timers5 };
 
 		case 'REFRESH':
 			let timers6 = [];
@@ -76,7 +76,7 @@ const chrono = (state, action) => {
 					// console.log('Refresh Titulo: ' + timer.title + ' value: ' + timer.value);
 				}
 			});
-			return { edit: state.edit, timers: timers6 };
+			return { newTimer: state.newTimer, timers: timers6 };
 
 		case 'REFRESH2':
 			let timers8 = [];
@@ -89,11 +89,11 @@ const chrono = (state, action) => {
 					// console.log('Refresh Titulo: ' + timer.title + ' value: ' + timer.value);
 				}
 			});
-			return { edit: state.edit, timers: timers8 };
+			return { newTimer: state.newTimer, timers: timers8 };
 
 		case 'SCAN':
 			return {
-					edit: state.edit, 
+					newTimer: state.newTimer, 
 
 					timers: state.timers.map((timer, index) => 
 								timer.status ? {...timer, value: timer.value + 1 } : timer 
@@ -108,4 +108,4 @@ const chrono = (state, action) => {
 
 // export default createStore(chrono, { edit: false, timers: [{ title: 'Test', project: 'christmas', value: 70000, status: false, edit: false }, { title: 'Eric', project: 'Suescun', value: 45000, status: false, edit: false }, { title: 'Ruth', project: 'Arango', value: 30000, status: false, edit: false }]} );
 
-export default createStore(chrono, { edit: false, timers: [{ title: 'Test', project: 'christmas', value: 90, status: true, edit: false }, { title: 'Eric', project: 'Suescun', value: 45, status: false, edit: false }, { title: 'Ruth', project: 'Arango', value: 15, status: false, edit: false }]} );
+export default createStore(chrono, { newTimer: false, timers: [{ title: 'Test', project: 'christmas', value: 90, status: true, edit: false }, { title: 'Eric', project: 'Suescun', value: 45, status: false, edit: false }, { title: 'Ruth', project: 'Arango', value: 15, status: false, edit: false }]} );

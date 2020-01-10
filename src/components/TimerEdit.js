@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import store from '../store';
 
 class TimerEdit extends Component {
@@ -45,8 +45,10 @@ class TimerEdit extends Component {
 				<input type="text" value={this.state.title} onChange={this.handleChangeTitle.bind(this)} />
 				<label>Proyecto</label>
 				<input type="text" value={this.state.project} onChange={this.handleChangeProject.bind(this)} />
-				<Button variant={"outline-primary"} onClick={this.handleSave.bind(this, this.state.index)} >Guardar</Button>
-				<Button variant={"outline-danger"} onClick={this.handleCancel.bind(this, this.state.index)} >Cancelar</Button>
+				<ButtonGroup>
+					<Button variant={"outline-primary"} onClick={this.handleSave.bind(this, this.state.index)} >Guardar</Button>
+					<Button variant={"outline-danger"} onClick={this.handleCancel.bind(this, this.state.index)} >Cancelar</Button>
+				</ButtonGroup>
 			</div>
 		);
 	}

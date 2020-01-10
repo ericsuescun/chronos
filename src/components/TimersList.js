@@ -22,11 +22,18 @@ class TimersList extends Component {
 			<div>
 				{store.getState().timers.map((timer, index) => 
 
-					<Timer key={'id' + index} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
+					
+						!timer.edit ? 
+						<Timer key={'id' + index} index={index} title={timer.title} project={timer.project} value={timer.value} status={timer.status} edit={timer.edit} />
+						:
+						<TimerForm index={index} value={timer.value} title={timer.title} project={timer.project} status={timer.status} interval={timer.interval} use={'edition'} edit={timer.edit} />
+					
+
+					
 
 					
 				)}
-				{ store.getState().edit ? <TimerForm /> : <br /> }
+				{ store.getState().newTimer ? <TimerForm use={'creation'} /> : <br /> }
 			</div>
 		);
 	}

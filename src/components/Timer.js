@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import store from '../store';
-import { Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
+import TimerForm from './TimerForm';
 
 class Timer extends Component {
 
@@ -13,6 +14,7 @@ class Timer extends Component {
 			title: props.title,
 			project: props.project,
 			status: props.status,
+			edit: props.edit,
 			interval: props.interval
 		}
 	}
@@ -66,8 +68,6 @@ class Timer extends Component {
 	render() {
 		return(
 			<div key={this.state.index} >
-				{
-					!this.state.edit ? 
 
 					<div>
 						<h5>{store.getState().timers[this.state.index].title}</h5>
@@ -77,16 +77,8 @@ class Timer extends Component {
 						<FontAwesomeIcon icon="edit" onClick={this.handleEdit.bind(this)} />
 						<Button variant={ store.getState().timers[this.state.index].status ? 'danger' : 'success' } onClick={this.handleStartStop.bind(this)} >{store.getState().timers[this.state.index].status ? 'Stop' : 'Start' }</Button>
 					</div>
-					:
-					<div>
-						<label>Título</label>
-						<input type="text" value={this.state.title} onChange={this.handleChangeTitle.bind(this)} />
-						<label>Proyecto</label>
-						<input type="text" value={this.state.project} onChange={this.handleChangeProject.bind(this)} />
-						<Button variant={"outline-primary"} onClick={this.handleSave.bind(this)} >Guardar</Button>
-						<Button variant={"outline-danger"} onClick={this.handleCancel.bind(this)} >Cancelar</Button>
-					</div>
-				}
+
+				
 			</div>
 		);
 	}

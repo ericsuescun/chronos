@@ -11,7 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      edit: false,
+      newTimer: false,
       timers: [{ title: 'Test', project: 'chirstmas', value: 0, status: false, edit: false }] 
     }
 
