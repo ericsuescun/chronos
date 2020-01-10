@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import store from '../store';
-import { Button, ButtonGroup, Card } from 'react-bootstrap';
-import TimerForm from './TimerForm';
+import { Button, Card } from 'react-bootstrap';
 
 class Timer extends Component {
 
